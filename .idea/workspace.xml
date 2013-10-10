@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99aa6a44-3f31-4553-ba14-525e81424406" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="99aa6a44-3f31-4553-ba14-525e81424406" name="Default" comment="" />
     <ignored path="aspectos.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381364416965" ignored="false" />
+    <file path="/Dummy.txt" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381421150850" ignored="false" />
     <file path="/join_point_regex_class.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381346982793" ignored="false" />
     <file path="/join_point_regex_method.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381346542658" ignored="false" />
     <file path="/join_point_class_hierarchy.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381347149741" ignored="false" />
     <file path="/temp.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381347070181" ignored="false" />
-    <file path="/join_point_method.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381351691612" ignored="false" />
+    <file path="/join_point_method.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381423396045" ignored="false" />
     <file path="/join_point_class.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381346848006" ignored="false" />
     <file path="/join_point_accesors.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381349426691" ignored="false" />
-    <file path="/join_point_arity.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381351996302" ignored="false" />
+    <file path="/join_point_arity.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381421924895" ignored="false" />
+    <file path="/join_point_parameter_name.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381423365313" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +33,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="join_point_arity.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/join_point_arity.rb">
+      <file leaf-file-name="join_point_parameter_name.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/join_point_parameter_name.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="27" selection-start="181" selection-end="181" vertical-scroll-proportion="0.23407917">
+            <state line="6" column="22" selection-start="152" selection-end="152" vertical-scroll-proportion="0.17555939">
               <folding />
             </state>
           </provider>
@@ -66,8 +65,9 @@
         <option value="$PROJECT_DIR$/src/join_point_class.rb" />
         <option value="$PROJECT_DIR$/src/join_point_class_hierarchy.rb" />
         <option value="$PROJECT_DIR$/src/join_point_accesors.rb" />
-        <option value="$PROJECT_DIR$/src/join_point_method.rb" />
         <option value="$PROJECT_DIR$/src/join_point_arity.rb" />
+        <option value="$PROJECT_DIR$/src/join_point_parameter_name.rb" />
+        <option value="$PROJECT_DIR$/src/join_point_method.rb" />
       </list>
     </option>
   </component>
@@ -222,8 +222,8 @@
     <property name="options.lastSelected" value="Errors" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../pruebaAop" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
@@ -303,13 +303,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26100153" sideWeight="0.67105263" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26555386" sideWeight="0.67105263" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -385,16 +385,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/join_point_class.rb">
+    <entry file="file://$PROJECT_DIR$/src/join_point_arity.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="26" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/join_point_method.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="94" selection-start="272" selection-end="272" vertical-scroll-proportion="0.0">
+        <state line="8" column="27" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -406,9 +399,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/join_point_class.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="26" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point_arity.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="27" selection-start="181" selection-end="181" vertical-scroll-proportion="0.23407917">
+        <state line="1" column="26" selection-start="47" selection-end="47" vertical-scroll-proportion="0.029259896">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/join_point_method.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="26" selection-start="74" selection-end="74" vertical-scroll-proportion="0.05851979">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/join_point_parameter_name.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="22" selection-start="152" selection-end="152" vertical-scroll-proportion="0.17555939">
           <folding />
         </state>
       </provider>
