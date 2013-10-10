@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99aa6a44-3f31-4553-ba14-525e81424406" name="Default" comment="" />
+    <list default="true" id="99aa6a44-3f31-4553-ba14-525e81424406" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point_parameter_name.rb" afterPath="$PROJECT_DIR$/src/join_point_parameter_name.rb" />
+    </list>
     <ignored path="aspectos.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381421150850" ignored="false" />
@@ -13,7 +15,8 @@
     <file path="/join_point_class.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381346848006" ignored="false" />
     <file path="/join_point_accesors.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381349426691" ignored="false" />
     <file path="/join_point_arity.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381421924895" ignored="false" />
-    <file path="/join_point_parameter_name.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381423365313" ignored="false" />
+    <file path="/join_point_parameter_name.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381424513138" ignored="false" />
+    <file path="/join_point_parameter_type.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381424492931" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,10 +36,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="join_point_parameter_name.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="join_point_parameter_name.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point_parameter_name.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="22" selection-start="152" selection-end="152" vertical-scroll-proportion="0.17555939">
+            <state line="7" column="29" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="join_point_parameter_type.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/join_point_parameter_type.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="105" selection-start="268" selection-end="268" vertical-scroll-proportion="0.32185885">
               <folding />
             </state>
           </provider>
@@ -66,8 +78,9 @@
         <option value="$PROJECT_DIR$/src/join_point_class_hierarchy.rb" />
         <option value="$PROJECT_DIR$/src/join_point_accesors.rb" />
         <option value="$PROJECT_DIR$/src/join_point_arity.rb" />
-        <option value="$PROJECT_DIR$/src/join_point_parameter_name.rb" />
         <option value="$PROJECT_DIR$/src/join_point_method.rb" />
+        <option value="$PROJECT_DIR$/src/join_point_parameter_type.rb" />
+        <option value="$PROJECT_DIR$/src/join_point_parameter_name.rb" />
       </list>
     </option>
   </component>
@@ -422,7 +435,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point_parameter_name.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="22" selection-start="152" selection-end="152" vertical-scroll-proportion="0.17555939">
+        <state line="7" column="29" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/join_point_parameter_type.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="105" selection-start="268" selection-end="268" vertical-scroll-proportion="0.32185885">
           <folding />
         </state>
       </provider>
