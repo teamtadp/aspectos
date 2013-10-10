@@ -12,6 +12,7 @@ test/tmp
 test/version_tmp
 tmp
 .idea/inspectionProfiles
+.idea/workspace.xml
 
 # YARD artifacts
 .yardoc
