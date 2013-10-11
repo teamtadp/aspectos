@@ -1,15 +1,15 @@
 class AbstractAspect
 
-  IMPLEMENT_MSG = "abstract method must be implemented"
+  IMPLEMENT_MSG = 'abstract method must be implemented'
 
-  attr_reader :pointCut
+  attr_reader :point_cut
 
-  def initialize pointCut
-     @pointCut = pointCut
+  def initialize(point_cut)
+     @point_cut = point_cut
   end
 
-  def before; raise IMPLEMENT_MSG; end
-  def after; raise IMPLEMENT_MSG; end
+  def before; raise IMPLEMENT_MSG end
+  def after; raise IMPLEMENT_MSG end
 
   def before_method(a_method,a_class)
     if check_point_cut a_method,a_class
@@ -24,6 +24,6 @@ class AbstractAspect
   end
 
   def check_point_cut(a_method,a_class)
-    pointCut.aplica_metodo a_method,a_class
+    @point_cut.applies a_method,a_class
   end
 end

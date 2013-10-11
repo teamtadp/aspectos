@@ -12,7 +12,7 @@ class MethodObserver
   end
 
   public
-  def add_aspect aspect
+  def add_aspect(aspect)
     @aspects << aspect
   end
 
