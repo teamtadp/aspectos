@@ -17,10 +17,14 @@ describe 'Test de join points' do
      end
    end
 
-    class AnotherClass < AClass
+   @a_method = AClass.instance_method(:a_method)
+
+   class AnotherClass < AClass
       def another_method
       end
     end
+
+   @another_method = AnotherClass.instance_method(:another_method)
 
    class YetAnotherClass < AnotherClass
      def yet_another_method
@@ -123,11 +127,11 @@ describe 'Test de join points' do
 
   #------------------- NOMBRE PARAMETRO ---------------------
   it 'pasa si el metodo tiene al menos un parametro con nombre como el especificado' do
-    expect(@_jp_param_name_param1.applies(:a_method,AClass)).to eq(true)
+    expect(@_jp_param_name_param1.applies(@a_method,AClass)).to eq(true)
   end
 
   it 'pasa si el metodo no tiene un parametro con nombre como el especificado' do
-    expect(@_jp_param_name_param1.applies(:another_method,AnotherClass)).to eq(false)
+    expect(@_jp_param_name_param1.applies(@another_method,AnotherClass)).to eq(false)
   end
   #------------------------------------------------
 
