@@ -1,6 +1,6 @@
-require_relative '../../src/cut_point/abstract_cut_point'
+require_relative '../../src/cut_point/abstract_join_point'
 
-class JoinPointArity < AbstractCutPoint
+class JoinPointArity < AbstractJoinPoint
   def initialize(an_arity)
     @jp_arity = an_arity
   end

@@ -1,5 +1,5 @@
-require_relative '../../src/cut_point/abstract_cut_point'
-class JoinPointProc < AbstractCutPoint
+require_relative '../../src/cut_point/abstract_join_point'
+class JoinPointProc < AbstractJoinPoint
 
   def initialize(a_proc)
     @jp_proc = a_proc

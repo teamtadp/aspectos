@@ -1,5 +1,5 @@
 require_relative '../src/aspect/aspect'
-require_relative '../src/cut_point/abstract_cut_point'
+require_relative '../src/cut_point/abstract_join_point'
 require_relative '../src/observer/method_observer'
 
 require 'rspec'
@@ -8,9 +8,9 @@ describe 'Test de observer' do
 
   before(:all) do
     #se que no tendria q pasar un asbtract point, pero no arme ninguna clase que lo implemente todavia.
-    @aspect1 = Aspect.new AbstractCutPoint.new
-    @aspect2 = Aspect.new AbstractCutPoint.new
-    @aspect3 = Aspect.new AbstractCutPoint.new
+    @aspect1 = Aspect.new AbstractJoinPoint.new
+    @aspect2 = Aspect.new AbstractJoinPoint.new
+    @aspect3 = Aspect.new AbstractJoinPoint.new
   end
 
 

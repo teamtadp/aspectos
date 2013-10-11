@@ -21,10 +21,18 @@ describe 'Test de join points' do
       end
     end
 
+   class YetAnotherClass < AnotherClass
+     def yet_another_method
+     end
+   end
+
+   @_jp_class_superclass = JoinPointSuperclass.new(AClass)
    @_jp_class_hierarchy_aclass = JoinPointClassHierarchy.new(AClass)
    @_jp_method_amethod = JoinPointMethod.new(:a_method)
    @_jp_param_name_param1 = JoinPointParameterName.new(:param1)
    @_jp_regex_only_letters = JoinPointRegexMethod.new /^([a-zA-Z_]+|\[\])[\?!=]?$/
+
+
   end
 
   it 'pasa si la aridad es la especificada' do

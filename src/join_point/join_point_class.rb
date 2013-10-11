@@ -1,5 +1,5 @@
-require_relative '../../src/cut_point/abstract_cut_point'
-class JoinPointClass < AbstractCutPoint
+require_relative '../../src/cut_point/abstract_join_point'
+class JoinPointClass < AbstractJoinPoint
   def initialize(a_class)
     @jp_class = a_class
   end
