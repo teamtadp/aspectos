@@ -16,6 +16,14 @@ class MethodObserver
     @aspects << aspect
   end
 
+  def remove_aspect aspect
+    @aspects.delete(aspect)
+  end
+
+  def remove_all
+    @aspects.clear
+  end
+
   def call_before_method(a_method,a_class)
 
   end
