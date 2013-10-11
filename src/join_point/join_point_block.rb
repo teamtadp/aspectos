@@ -1,7 +1,7 @@
 require_relative '../../src/cut_point/abstract_join_point'
-class JoinPointProc < AbstractJoinPoint
+class JoinPointBlock < AbstractJoinPoint
 
-  def initialize(a_proc)
+  def initialize(&a_proc)
     @jp_proc = a_proc
   end
 

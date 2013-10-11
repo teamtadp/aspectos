@@ -7,6 +7,8 @@ require_relative '../src/join_point/join_point_parameter_name'
 require_relative '../src/join_point/join_point_parameter_type'
 require_relative '../src/join_point/join_point_regex_method'
 require_relative '../src/join_point/join_point_superclass'
+require_relative '../src/join_point/join_point_block'
+
 require 'rspec'
 
 describe 'Test de join points' do
@@ -138,6 +140,23 @@ describe 'Test de join points' do
   #------------------- REGEX METODO ---------------------
   it 'pasa si se valida la RE de que el nombre del metodo tiene solo letras' do
     expect(@_jp_regex_only_letters.applies(@another_method,AnotherClass)).to eq(true)
+  end
+  #------------------------------------------------
+
+  #------------------- BLOQUE ---------------------
+  it 'pasa si se pasa un bloque que chequee la clase tiene el mismo nombre que el metodo' do
+    class NombreClase
+      def NombreClase
+      end
+    end
+    @_method_nombre_clase = NombreClase.instance_method(:NombreClase)
+
+    @_jp_block = JoinPointBlock.new do
+      |a_method, a_class|
+      a_method.name.to_s.eql? a_class.to_s
+    end
+
+    expect(@_jp_block.applies(@_method_nombre_clase, NombreClase)).to eq(true)
   end
   #------------------------------------------------
 
