@@ -1,5 +1,5 @@
 require_relative '../../src/cut_point/abstract_cut_point'
-class JoinPointMethod < AbstractJoinPoint
+class JoinPointMethod < AbstractCutPoint
   def initialize(a_method)
     @jp_method = a_method
   end

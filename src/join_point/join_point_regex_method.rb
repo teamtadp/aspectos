@@ -1,6 +1,6 @@
 require_relative '../../src/cut_point/abstract_cut_point'
 require 'regex'
-class JoinPointRegexMethod < AbstractJoinPoint
+class JoinPointRegexMethod < AbstractCutPoint
   def initialize(a_regex_pattern)
     @jp_a_regex_pattern = a_regex_pattern
   end

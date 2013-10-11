@@ -1,5 +1,5 @@
 require_relative '../../src/cut_point/abstract_cut_point'
-class JoinPointParameterName < AbstractJoinPoint
+class JoinPointParameterName < AbstractCutPoint
   def initialize(a_param_sym)
     @jp_param_sym = a_param_sym
   end
