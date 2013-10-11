@@ -1,4 +1,5 @@
-class JoinPointArity
+require_relative '../join_point/abstract_join_point'
+class JoinPointArity < AbstractJoinPoint
   def initialize(an_arity)
     @jp_arity = an_arity
   end

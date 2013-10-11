@@ -1,4 +1,5 @@
-class JoinPointClass
+require_relative '../join_point/abstract_join_point'
+class JoinPointClass < AbstractJoinPoint
 
   def initialize(a_class)
     @jp_class = a_class

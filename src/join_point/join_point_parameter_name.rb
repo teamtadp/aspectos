@@ -1,4 +1,5 @@
-class JoinPointParameterName
+require_relative '../join_point/abstract_join_point'
+class JoinPointParameterName < AbstractJoinPoint
   def initialize(a_param_sym)
     @jp_param_sym = a_param_sym
   end

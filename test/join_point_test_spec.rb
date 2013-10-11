@@ -1,12 +1,13 @@
-require_relative '../src/join_point_arity'
-require_relative '../src/join_point_class'
-require_relative '../src/join_point_class_hierarchy'
-require_relative '../src/join_point_method'
-require_relative '../src/join_point_parameter_name'
-require_relative '../src/join_point_parameter_type'
+require_relative '../src/join_point/join_point_arity'
+require_relative '../src/join_point/join_point_class'
+require_relative '../src/join_point/join_point_class_hierarchy'
+require_relative '../src/join_point/join_point_method'
+require_relative '../src/join_point/join_point_parameter_name'
+require_relative '../src/join_point/join_point_parameter_type'
+require_relative '../src/join_point/join_point_regex_method'
 require 'rspec'
 
-describe 'Testeo de join points' do
+describe 'Test de join points' do
 
   before(:all) do
    class AClass
@@ -22,6 +23,7 @@ describe 'Testeo de join points' do
    @_jp_class_hierarchy_aclass = JoinPointClassHierarchy.new(AClass)
    @_jp_method_amethod = JoinPointMethod.new(:a_method)
    @_jp_param_name_param1 = JoinPointParameterName.new(:param1)
+   @_jp_regex_only_letters = JoinPointRegexMethod.new /^([a-zA-Z_]+|\[\])[\?!=]?$/
   end
 
   it 'pasa si la aridad es la especificada' do
@@ -77,5 +79,8 @@ describe 'Testeo de join points' do
     expect(@_jp_param_name_param1.applies(:another_method,AnotherClass)).to eq(false)
   end
 
+  it 'pasa si se valida la RE de que el nombre del metodo tiene solo letras' do
+    expect(@_jp_regex_only_letters.applies(:another_method,AnotherClass)).to eq(true)
+  end
 
 end

@@ -1,4 +1,5 @@
-class JoinPointMethod
+require_relative '../join_point/abstract_join_point'
+class JoinPointMethod < AbstractJoinPoint
   def initialize(a_method)
     @jp_method = a_method
   end
