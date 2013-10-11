@@ -6,6 +6,7 @@ require_relative '../src/join_point/join_point_method'
 require_relative '../src/join_point/join_point_parameter_name'
 require_relative '../src/join_point/join_point_parameter_type'
 require_relative '../src/join_point/join_point_regex_method'
+require_relative '../src/join_point/join_point_superclass'
 require 'rspec'
 
 describe 'Test de join points' do
@@ -28,13 +29,14 @@ describe 'Test de join points' do
 
    @_jp_class_superclass = JoinPointSuperclass.new(AClass)
    @_jp_class_hierarchy_aclass = JoinPointClassHierarchy.new(AClass)
+   @_jp_class_hierarchy_object = JoinPointClassHierarchy.new(Object)
    @_jp_method_amethod = JoinPointMethod.new(:a_method)
    @_jp_param_name_param1 = JoinPointParameterName.new(:param1)
    @_jp_regex_only_letters = JoinPointRegexMethod.new /^([a-zA-Z_]+|\[\])[\?!=]?$/
 
-
   end
 
+  #------------------- ARIDAD ---------------------
   it 'pasa si la aridad es la especificada' do
     jp_arity_2 = JoinPointArity.new(2)
     expect(jp_arity_2.applies(:a_method,AClass)).to eq(true)
@@ -44,7 +46,9 @@ describe 'Test de join points' do
     jp_arity_3 = JoinPointArity.new(3)
     expect(jp_arity_3.applies(:a_method,AClass)).to eq(false)
   end
+  #------------------------------------------------
 
+  #------------------- NOMBRE CLASE ---------------------
   it 'pasa si la clase es la especificada' do
     jp_class_eql_name = JoinPointClass.new(AClass)
     expect(jp_class_eql_name.applies(nil,AClass)).to eq(true)
@@ -54,16 +58,45 @@ describe 'Test de join points' do
     jp_class_eql_name = JoinPointClass.new(AnotherClass)
     expect(jp_class_eql_name.applies(nil,AClass)).to eq(false)
   end
+  #------------------------------------------------
 
-  it 'pasa si la clase esta dentro de la jerarquia especificada' do
+  #------------------- SUPERCLASE ---------------------
+  it 'pasa si la clase esta dentro de la superclase especificada nivel 1' do
+    expect(@_jp_class_superclass.applies(nil,AnotherClass)).to eq(true)
+  end
+
+  it 'pasa si la clase esta dentro de la superclase especificada y es esa misma nivel 1' do
+    expect(@_jp_class_superclass.applies(nil,AClass)).to eq(true)
+  end
+
+  it 'pasa si la clase no esta dentro de la superclase especificada nivel 1' do
+    class ANewClass
+    end
+
+    jp_class_superclass = JoinPointSuperclass.new(ANewClass)
+    expect(jp_class_superclass.applies(nil,AClass)).to eq(false)
+  end
+  #------------------------------------------------
+
+
+  #------------------- JERARQUIA ---------------------
+  it 'pasa si la clase esta dentro de la jerarquia especificada nivel 1' do
     expect(@_jp_class_hierarchy_aclass.applies(nil,AnotherClass)).to eq(true)
+  end
+
+  it 'pasa si la clase esta dentro de la jerarquia especificada nivel 2' do
+    expect(@_jp_class_hierarchy_aclass.applies(nil,YetAnotherClass)).to eq(true)
+  end
+
+  it 'pasa si la clase esta dentro de la jerarquia de object' do
+    expect(@_jp_class_hierarchy_object.applies(nil,YetAnotherClass)).to eq(true)
   end
 
   it 'pasa si la clase esta dentro de la jerararquia especificada y es esa misma' do
     expect(@_jp_class_hierarchy_aclass.applies(nil,AClass)).to eq(true)
   end
 
-  it 'pasa si la clase no esta dentro de la jerarquia especificada' do
+  it 'pasa si la clase no esta dentro de la jerarquia especificada todos los niveles' do
     class ANewClass
     end
 
@@ -71,6 +104,13 @@ describe 'Test de join points' do
     expect(jp_class_hieararchy.applies(nil,AClass)).to eq(false)
   end
 
+  it 'pasa si object no esta en la jerarquia de aclass' do
+    expect(@_jp_class_hierarchy_aclass.applies(nil,Object)).to eq(false)
+  end
+  #------------------------------------------------
+
+
+  #------------------- NOMBRE METODO ---------------------
   it 'pasa si el metodo es el especificado' do
 
     expect(@_jp_method_amethod.applies(:a_method,AClass)).to eq(true)
@@ -79,7 +119,9 @@ describe 'Test de join points' do
   it 'pasa si el metodo no es el especificado' do
     expect(@_jp_method_amethod.applies(:another_method,AnotherClass)).to eq(false)
   end
+  #------------------------------------------------
 
+  #------------------- NOMBRE PARAMETRO ---------------------
   it 'pasa si el metodo tiene al menos un parametro con nombre como el especificado' do
     expect(@_jp_param_name_param1.applies(:a_method,AClass)).to eq(true)
   end
@@ -87,9 +129,12 @@ describe 'Test de join points' do
   it 'pasa si el metodo no tiene un parametro con nombre como el especificado' do
     expect(@_jp_param_name_param1.applies(:another_method,AnotherClass)).to eq(false)
   end
+  #------------------------------------------------
 
+  #------------------- REGEX METODO ---------------------
   it 'pasa si se valida la RE de que el nombre del metodo tiene solo letras' do
     expect(@_jp_regex_only_letters.applies(:another_method,AnotherClass)).to eq(true)
   end
+  #------------------------------------------------
 
 end

@@ -1,3 +1,5 @@
+require_relative 'abstract_join_point'
+
 class CutPointOr < AbstractJoinPoint
   # Cut point que implementa el and entre joinpoints y cutpoints tambien.
   def initialize(join_points)
