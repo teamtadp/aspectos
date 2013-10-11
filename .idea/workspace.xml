@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="99aa6a44-3f31-4553-ba14-525e81424406" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\Francisco\Cosas mias\Facultad\UTN\TADP\Ruby\TP2\aspectos\src\join_point\abstract_join_point.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cut_point/abstract_cut_point.rb" afterPath="$PROJECT_DIR$/src/cut_point/abstract_cut_point.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_arity.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_arity.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_class.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_class.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_class_hierarchy.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_class_hierarchy.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_method.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_method.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_parameter_name.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_parameter_name.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_parameter_type.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_parameter_type.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/join_point/join_point_regex_method.rb" afterPath="$PROJECT_DIR$/src/join_point/join_point_regex_method.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/observer/method_observer.rb" afterPath="$PROJECT_DIR$/src/observer/method_observer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/observer_test_spec.rb" afterPath="$PROJECT_DIR$/test/observer_test_spec.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="aspectos.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381452244673" ignored="false" />
+    <file path="/Dummy.txt" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381452905238" ignored="false" />
     <file path="/join_point_regex_class.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381346982793" ignored="false" />
     <file path="/join_point_regex_method.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381450993915" ignored="false" />
     <file path="/join_point_class_hierarchy.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381452750090" ignored="false" />
@@ -29,13 +22,13 @@
     <file path="/.gitignore" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381424705820" ignored="false" />
     <file path="/join_point_test_spec.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381446831395" ignored="false" />
     <file path="$PROJECT_DIR$/../metaprogramacion-xunit-clase-20132c/test/motor_xunit_spec.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381431669881" ignored="false" />
-    <file path="/method_observer.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381444524496" ignored="false" />
+    <file path="/method_observer.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381453804601" ignored="false" />
     <file path="/abstract_join_point.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381444633257" ignored="false" />
     <file path="/join_point_regex_mtehod.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381446256960" ignored="false" />
     <file path="/fragment.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381450222773" ignored="false" />
     <file path="/abstract_aspect.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381450767903" ignored="false" />
     <file path="/observer_test.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381451385977" ignored="false" />
-    <file path="/observer_test_spec.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381452034866" ignored="false" />
+    <file path="/observer_test_spec.rb" changelist="99aa6a44-3f31-4553-ba14-525e81424406" time="1381453765107" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +51,7 @@
       <file leaf-file-name="join_point_parameter_name.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_parameter_name.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0">
+            <state line="1" column="47" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -67,25 +60,34 @@
       <file leaf-file-name="join_point_parameter_type.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_parameter_type.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0">
+            <state line="1" column="47" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="join_point_regex_method.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="join_point_regex_method.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_regex_method.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.048710603">
+            <state line="2" column="45" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="join_point_test_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/join_point_test_spec.rb">
+      <file leaf-file-name="method_observer.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/observer/method_observer.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="4" selection-start="1317" selection-end="1324" vertical-scroll-proportion="0.0">
+            <state line="23" column="18" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="observer_test_spec.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/observer_test_spec.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="42" selection-start="1188" selection-end="1188" vertical-scroll-proportion="1.082873">
               <folding />
             </state>
           </provider>
@@ -94,7 +96,7 @@
       <file leaf-file-name="join_point_method.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_method.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+            <state line="1" column="40" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -103,7 +105,7 @@
       <file leaf-file-name="join_point_class.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_class.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+            <state line="1" column="39" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,7 +114,7 @@
       <file leaf-file-name="join_point_class_hierarchy.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_class_hierarchy.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="57" vertical-scroll-proportion="0.0">
+            <state line="1" column="48" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -121,16 +123,7 @@
       <file leaf-file-name="join_point_arity.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/join_point/join_point_arity.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="observer_test_spec.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/observer_test_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="71" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
+            <state line="1" column="39" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -139,7 +132,7 @@
       <file leaf-file-name="abstract_cut_point.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cut_point/abstract_cut_point.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="58" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+            <state line="0" column="22" selection-start="6" selection-end="22" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -163,22 +156,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/test/join_point_test_spec.rb" />
         <option value="$PROJECT_DIR$/src/aspect/abstract_method.rb" />
         <option value="$PROJECT_DIR$/src/join_point/abstract_join_point.rb" />
         <option value="$PROJECT_DIR$/src/aspect/abstract_aspect.rb" />
         <option value="$PROJECT_DIR$/test/observer_test.rb" />
         <option value="$PROJECT_DIR$/test/observer_testa.rb" />
         <option value="$PROJECT_DIR$/src/point_cut/abstarct_cut_point.rb" />
-        <option value="$PROJECT_DIR$/test/observer_test_spec.rb" />
         <option value="$PROJECT_DIR$/src/cut_point/abstract_cut_point.rb" />
-        <option value="$PROJECT_DIR$/src/join_point/join_point_class_hierarchy.rb" />
         <option value="$PROJECT_DIR$/src/join_point/join_point_arity.rb" />
         <option value="$PROJECT_DIR$/src/join_point/join_point_class.rb" />
+        <option value="$PROJECT_DIR$/src/join_point/join_point_class_hierarchy.rb" />
         <option value="$PROJECT_DIR$/src/join_point/join_point_method.rb" />
         <option value="$PROJECT_DIR$/src/join_point/join_point_parameter_name.rb" />
         <option value="$PROJECT_DIR$/src/join_point/join_point_parameter_type.rb" />
         <option value="$PROJECT_DIR$/src/join_point/join_point_regex_method.rb" />
+        <option value="$PROJECT_DIR$/test/observer_test_spec.rb" />
+        <option value="$PROJECT_DIR$/src/observer/method_observer.rb" />
       </list>
     </option>
   </component>
@@ -299,7 +292,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aspectos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aspectos" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="observer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -536,7 +547,15 @@
       <created>1381452249475</created>
       <updated>1381452249475</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="- Se agrega la herencia a CutPoint">
+      <created>1381452836211</created>
+      <updated>1381452836211</updated>
+    </task>
+    <task id="LOCAL-00004" summary="- Se agrega la herencia a CutPoint">
+      <created>1381452907809</created>
+      <updated>1381452907809</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -544,7 +563,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32840723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32840723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32840723" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -605,7 +624,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Se genera un paquete para cada parte del proyecto. Se agrega el Singleton para method observer, se agrega el JoinPointRegex, se agrega un test para ObserverMethod." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Se agrega la herencia a CutPoint" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -620,6 +639,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="- Se genera un paquete para cada parte del proyecto. Se agrega el Singleton para method observer, se agrega el JoinPointRegex, se agrega un test para ObserverMethod." />
+    <MESSAGE value="- Se agrega la herencia a CutPoint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -655,13 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/observer_test_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="71" selection-start="464" selection-end="464" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/join_point_test_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="4" selection-start="1317" selection-end="1324" vertical-scroll-proportion="0.0">
@@ -671,56 +684,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cut_point/abstract_cut_point.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="58" selection-start="137" selection-end="137" vertical-scroll-proportion="0.0">
+        <state line="0" column="22" selection-start="6" selection-end="22" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_arity.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+        <state line="1" column="39" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_class.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+        <state line="1" column="39" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_class_hierarchy.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="57" vertical-scroll-proportion="0.0">
+        <state line="1" column="48" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_method.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="57" selection-start="57" selection-end="57" vertical-scroll-proportion="0.0">
+        <state line="1" column="40" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_parameter_name.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0">
+        <state line="1" column="47" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_parameter_type.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0">
+        <state line="1" column="47" selection-start="105" selection-end="105" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/join_point/join_point_regex_method.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="58" selection-end="58" vertical-scroll-proportion="0.048710603">
+        <state line="2" column="45" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/observer/method_observer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="18" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/observer_test_spec.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="42" selection-start="1188" selection-end="1188" vertical-scroll-proportion="1.082873">
           <folding />
         </state>
       </provider>
