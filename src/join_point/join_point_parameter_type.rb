@@ -1,4 +1,4 @@
-require_relative '../join_point/abstract_join_point'
+require_relative '../../src/cut_point/abstract_cut_point'
 class JoinPointParameterType < AbstractJoinPoint
   def initialize(a_parameter_type_sym)
     @jp_param_type_sym = a_parameter_type_sym
