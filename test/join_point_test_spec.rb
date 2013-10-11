@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 require_relative '../src/join_point/join_point_arity'
 require_relative '../src/join_point/join_point_class'
 require_relative '../src/join_point/join_point_class_hierarchy'
@@ -6,15 +6,6 @@ require_relative '../src/join_point/join_point_method'
 require_relative '../src/join_point/join_point_parameter_name'
 require_relative '../src/join_point/join_point_parameter_type'
 require_relative '../src/join_point/join_point_regex_method'
-=======
-require_relative '../src/join_point_arity'
-require_relative '../src/join_point_class'
-require_relative '../src/join_point_class_hierarchy'
-require_relative '../src/join_point_method'
-require_relative '../src/join_point_parameter_name'
-require_relative '../src/join_point_parameter_type'
-require_relative '../src/join_point_class_equal_name'
->>>>>>> Stashed changes
 require 'rspec'
 
 describe 'Test de join points' do
@@ -47,12 +38,12 @@ describe 'Test de join points' do
   end
 
   it 'pasa si la clase es la especificada' do
-    jp_class_eql_name = JoinPointClassEqualName.new(AClass)
+    jp_class_eql_name = JoinPointClass.new(AClass)
     expect(jp_class_eql_name.applies(nil,AClass)).to eq(true)
   end
 
   it 'pasa si la clase es distinta a la especificada' do
-    jp_class_eql_name = JoinPointClassEqualName.new(AnotherClass)
+    jp_class_eql_name = JoinPointClass.new(AnotherClass)
     expect(jp_class_eql_name.applies(nil,AClass)).to eq(false)
   end
 
