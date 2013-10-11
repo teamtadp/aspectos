@@ -5,7 +5,7 @@ class JoinPointParameterType < AbstractJoinPoint
   end
 
   def applies(a_method,a_class)
-    a_class.instance_method(a_method).parameters.any? do |p|
+    a_method.parameters.any? do |p|
       p[0].eql?(@jp_param_type_sym)
     end
   end

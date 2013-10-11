@@ -6,6 +6,6 @@ class JoinPointArity < AbstractJoinPoint
   end
 
   def applies(a_method,a_class)
-    a_class.instance_method(a_method).arity.eql?(@jp_arity)
+    a_method.arity.eql?(@jp_arity)
   end
 end

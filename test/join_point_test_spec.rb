@@ -43,12 +43,12 @@ describe 'Test de join points' do
   #------------------- ARIDAD ---------------------
   it 'pasa si la aridad es la especificada' do
     jp_arity_2 = JoinPointArity.new(2)
-    expect(jp_arity_2.applies(:a_method,AClass)).to eq(true)
+    expect(jp_arity_2.applies(@a_method,AClass)).to eq(true)
   end
 
   it 'pasa si la aridad es distinta a la especificada' do
     jp_arity_3 = JoinPointArity.new(3)
-    expect(jp_arity_3.applies(:a_method,AClass)).to eq(false)
+    expect(jp_arity_3.applies(@a_method,AClass)).to eq(false)
   end
   #------------------------------------------------
 
@@ -117,11 +117,11 @@ describe 'Test de join points' do
   #------------------- NOMBRE METODO ---------------------
   it 'pasa si el metodo es el especificado' do
 
-    expect(@_jp_method_amethod.applies(:a_method,AClass)).to eq(true)
+    expect(@_jp_method_amethod.applies(@a_method,AClass)).to eq(true)
   end
 
   it 'pasa si el metodo no es el especificado' do
-    expect(@_jp_method_amethod.applies(:another_method,AnotherClass)).to eq(false)
+    expect(@_jp_method_amethod.applies(@another_method,AnotherClass)).to eq(false)
   end
   #------------------------------------------------
 
@@ -137,7 +137,7 @@ describe 'Test de join points' do
 
   #------------------- REGEX METODO ---------------------
   it 'pasa si se valida la RE de que el nombre del metodo tiene solo letras' do
-    expect(@_jp_regex_only_letters.applies(:another_method,AnotherClass)).to eq(true)
+    expect(@_jp_regex_only_letters.applies(@another_method,AnotherClass)).to eq(true)
   end
   #------------------------------------------------
 
