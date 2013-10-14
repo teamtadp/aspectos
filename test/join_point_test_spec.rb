@@ -8,6 +8,8 @@ require_relative '../src/join_point/join_point_parameter_type'
 require_relative '../src/join_point/join_point_regex_method'
 require_relative '../src/join_point/join_point_superclass'
 require_relative '../src/join_point/join_point_block'
+require_relative '../src/join_point/join_point_regex_class'
+
 
 require 'rspec'
 
@@ -38,7 +40,8 @@ describe 'Test de join points' do
    @_jp_class_hierarchy_object = JoinPointClassHierarchy.new(Object)
    @_jp_method_amethod = JoinPointMethod.new(:a_method)
    @_jp_param_name_param1 = JoinPointParameterName.new(:param1)
-   @_jp_regex_only_letters = JoinPointRegexMethod.new /^([a-zA-Z_]+|\[\])[\?!=]?$/
+   @_jp_regex_method_name_only_letters = JoinPointRegexMethod.new /^([a-zA-Z_]+|\[\])[\?!=]?$/
+   @_jp_regex_class_name_only_letters = JoinPointRegexClass.new /^([a-zA-Z]+|\[\])[\?!=]?$/
 
   end
 
@@ -138,8 +141,11 @@ describe 'Test de join points' do
   #------------------------------------------------
 
   #------------------- REGEX METODO ---------------------
-  it 'pasa si se valida la RE de que el nombre del metodo tiene solo letras' do
-    expect(@_jp_regex_only_letters.applies(@another_method,AnotherClass)).to eq(true)
+  it 'pasa si se valida la RE de que el nombre del metodo tiene solo letras o _' do
+    expect(@_jp_regex_method_name_only_letters.applies(@another_method,AnotherClass)).to eq(true)
+  end
+  it 'pasa si se valida la RE de que el nombre de la clase tiene solo letras' do
+    expect(@_jp_regex_class_name_only_letters.applies(@another_method,AnotherClass)).to eq(true)
   end
   #------------------------------------------------
 
