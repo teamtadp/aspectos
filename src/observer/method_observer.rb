@@ -9,6 +9,22 @@ class MethodObserver
   private
   def initialize
     @aspects = Array.new
+    puts 'Empieza la magia negra'
+    Object.class_eval do
+      alias :old_send :send
+
+      def send(method,*args)
+        #MethodObserver.get_instance.call_before_method(method, self)
+        puts 'Estoy escribiendo antes'
+
+        self.old_send method, args
+
+        puts 'Estoy escribiendo despues'
+        #MethodObserver.get_instance.call_after_method(method, self)
+      end
+    end
+
+
   end
 
   public
@@ -25,12 +41,19 @@ class MethodObserver
   end
 
   def call_before_method(a_method,a_class)
-
+    @aspects.each do |aspect|
+      aspect.before_method a_method, a_class
+    end
   end
+
   def call_after_method(a_method,a_class)
-
+    @aspects.each do |aspect|
+      aspect.after_method a_method, a_class
+    end
   end
+
   def collect_aspects(a_method,a_class)
 
   end
+
 end

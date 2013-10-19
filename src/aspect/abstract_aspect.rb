@@ -13,13 +13,13 @@ class AbstractAspect
 
   def before_method(a_method,a_class)
     if check_point_cut a_method,a_class
-       before
+       self.before
     end
   end
 
   def after_method(a_method,a_class)
     if check_point_cut a_method,a_class
-      after
+      self.after
     end
   end
 
