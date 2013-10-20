@@ -4,7 +4,4 @@ class Aspect < AbstractAspect
     puts 'Hola'
   end
 
-  def before
-    #//TODO: Definir.
-  end
 end
