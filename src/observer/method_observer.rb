@@ -14,7 +14,6 @@ class MethodObserver
       alias :old_send :send
 
       def send(method,*args)
-        #puts "#{method} tiene argumentos #{args}"
         MethodObserver.get_instance.call_before_method(method, self)
         self.old_send method, *args
         MethodObserver.get_instance.call_after_method(method, self)
@@ -62,4 +61,7 @@ class MethodObserver
     end
   end
 
+  def destroy
+    @aspects.clear
+  end
 end

@@ -7,6 +7,10 @@ class Counter
     @counter += 1
   end
 
+  def multiply number
+    @counter *= number
+  end
+
   def result
     @counter
   end
