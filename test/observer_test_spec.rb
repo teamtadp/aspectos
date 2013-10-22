@@ -44,8 +44,10 @@ describe 'Test de observer' do
     end
 
     aspect = Aspecto.new(JoinPointClass.new(Prueba))
+    aspects = Array.new
+    aspects << aspect
 
-    MethodObserver.get_instance.add_aspect(aspect)
+    MethodObserver.get_instance.add_aspects(Prueba ,aspects)
     prueba = Prueba.new
 
     prueba.send :hola
@@ -75,8 +77,10 @@ describe 'Test de observer' do
     end
 
     aspect = Aspecto.new(JoinPointClass.new(Prueba))
+    aspects = Array.new
+    aspects << aspect
 
-    MethodObserver.get_instance.add_aspect(aspect)
+    MethodObserver.get_instance.add_aspects(Prueba,aspects)
     prueba = Prueba.new
 
     prueba.send :hola
