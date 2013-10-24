@@ -23,6 +23,15 @@ class AbstractAspect
     end
   end
 
+
+  def on_error_method(a_method,a_class)
+    debug "ONERROR", a_method, a_class
+
+    if check_point_cut a_method,a_class
+      self.onError
+    end
+  end
+
   def debug where, a_method,a_class
     puts "#{where.to_s} Class:'#{a_class.class.name}' Method:'#{a_method.to_s}' applies:#{check_point_cut a_method, a_class}" unless @debug == 0
   end
@@ -34,5 +43,7 @@ class AbstractAspect
   def startup; end
   def before; end
   def after; end
+  def onError; end
+  def insteadOf; end
 
 end

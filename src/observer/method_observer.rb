@@ -1,7 +1,7 @@
 require_relative '../../src/observer/class_aspects'
 
 class MethodObserver
-
+     Object
   attr_reader :aspects
 
   def self.get_instance
@@ -21,10 +21,16 @@ class MethodObserver
         alias :old_send :send
         def send(method,*args)
          MethodObserver.get_instance.call_before_method(method, self, (MethodObserver.get_instance.get_aspects(self)))
-          self.old_send method, *args
+         begin
+         self.old_send method, *args
+         rescue
+           MethodObserver.get_instance.call_on_error_method(method, self,(MethodObserver.get_instance.get_aspects(self)))
+         end
          MethodObserver.get_instance.call_after_method(method, self,(MethodObserver.get_instance.get_aspects(self)))
         end
+
       end
+
     end
   end
 
@@ -47,6 +53,12 @@ class MethodObserver
       aspect.after_method a_method, a_class
     end
   end
+
+ def call_on_error_method(a_method,a_class, a_aspects)
+   a_aspects.each do |aspect|
+     aspect.on_error_method a_method, a_class
+   end
+ end
 
   def collect_aspects
     aspects_classes = get_all_class_aspects()
