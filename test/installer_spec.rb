@@ -10,17 +10,15 @@ describe 'Funciona se se instala el aspect beforer' do
   before(:all) do
     class ClassAspected
       def method0
-      puts 'Se ejecuto el metodo method0'
+      0
       end
 
       def method1(num)
-        puts 'Se ejecuto el metodo mehod1'
-        puts num.to_s
+       num
       end
 
       def method2(num1, num2)
-        puts 'Se ejecuto el metodo method2'
-        puts num1.to_s + num2.to_s
+        num1 + num2
       end
     end
 
@@ -28,8 +26,7 @@ describe 'Funciona se se instala el aspect beforer' do
       attr_accessor :counter
 
       def before_method(*params)
-        @counter =  1
-        puts 'Se ejecuto el before.'
+        @counter = 1
       end
 
     end
@@ -50,20 +47,23 @@ describe 'Funciona se se instala el aspect beforer' do
 
   it 'should do something 0' do
     prueba = ClassAspected.new
-    prueba.method0
+    res = prueba.method0
     expect(@aspect.counter).to eq(1)
+    expect(res).to eq(0)
   end
 
   it 'should do something 1' do
     prueba = ClassAspected.new
-    prueba.method1 1
+    res = prueba.method1 1
     expect(@aspect.counter).to eq(1)
+    expect(res).to eq(1)
   end
 
   it 'should do something 2' do
     prueba = ClassAspected.new
-    prueba.method2 1,2
+    res = prueba.method2 1,2
     expect(@aspect.counter).to eq(1)
+    expect(res).to eq(3)
   end
 
 end
