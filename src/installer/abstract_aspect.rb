@@ -1,5 +1,6 @@
 require_relative '../cut_point/abstract_join_point'
 class AbstractAspect
+
   attr_accessor(:cut_point)
 
   def initialize(cut_point)
@@ -12,5 +13,16 @@ class AbstractAspect
     end
   end
 
-  def apply_aspect_method(a_method,a_class); raise 'apply_aspect_method must be implemented' end
+  def apply_aspect_method(a_method, a_class)
+    aspect = self
+    m_with_aspect = a_method.to_s + '_aspect_' + self.class.name
+    m_without_aspect = a_method.to_s + '_without_aspect_' + self.class.name
+    parameters = a_method.parameters
+
+    apply_concrete_aspect_method(a_class, aspect, m_with_aspect, m_without_aspect)
+
+    a_class.send(:alias_method, m_without_aspect.to_sym, a_method.name)
+    a_class.send(:alias_method, a_method.name, m_with_aspect.to_sym)
+  end
+
 end
