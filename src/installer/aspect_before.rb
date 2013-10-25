@@ -4,8 +4,8 @@ class AspectBefore < AbstractAspect
   #TODO: se pueden extraer cachos de código en la super clase porq algunas cosas se van a repetir. Template method.
     def apply_aspect_method(a_method,a_class)
       aspect = self
-      method_with_aspect = a_method.to_s + '_aspected'              #TODO:hacer q estos nombres se hagan dinamicos con el nombre del aspecto
-      method_without_aspect = a_method.to_s + '_without_aspect'
+      method_with_aspect = a_method.to_s + '_aspect_' + self.class.name
+      method_without_aspect = a_method.to_s + '_without_aspect_' + self.class.name
       parameters = a_method.parameters
 
       a_class.send(:define_method, method_with_aspect)  do |*parameters|
