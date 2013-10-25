@@ -27,7 +27,7 @@ describe 'Funciona se se instala el aspect beforer' do
     class Aspecto < AspectBefore
       attr_accessor :counter
 
-      def before_method
+      def before_method(*params)
         @counter =  1
         puts 'Se ejecuto el before.'
       end

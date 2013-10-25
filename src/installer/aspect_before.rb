@@ -9,7 +9,7 @@ class AspectBefore < AbstractAspect
       parameters = a_method.parameters
 
       a_class.send(:define_method, method_with_aspect)  do |*parameters|
-         aspect.before_method        #TODO: ver como hacer para q el usuario pueda definir parametros (el metodo del before)(before_method(*params), para q le lleguen))
+         aspect.before_method(*parameters)        #TODO: ver como hacer para q el usuario pueda definir parametros (el metodo del before)(before_method(*params), para q le lleguen))
             self.send(method_without_aspect.to_sym,*parameters)   #TODO hacer q esto pueda recibir parametros (el metodo original)
        end
 
@@ -17,5 +17,5 @@ class AspectBefore < AbstractAspect
       a_class.send(:alias_method, a_method.name,method_with_aspect.to_sym)
     end
 
-    def before_method; raise 'before_method must be implemented' end     #esto es lo q tiene q definir el usuario
+    def before_method(*parameters); raise 'before_method must be implemented' end     #esto es lo q tiene q definir el usuario
 end
