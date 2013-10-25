@@ -25,4 +25,6 @@ class AbstractAspect
     a_class.send(:alias_method, a_method.name, m_with_aspect.to_sym)
   end
 
+  def apply_concrete_aspect_method(a_class,aspect,m_with_aspect,m_without_aspect); raise 'apply_concrete_method should be implemented' end
+
 end

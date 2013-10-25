@@ -10,7 +10,7 @@ describe 'Funciona se se instala el aspect beforer' do
   before(:all) do
     class ClassAspected
       def method0
-      0
+      caller(0)
       end
 
       def method1(num)
@@ -34,35 +34,33 @@ describe 'Funciona se se instala el aspect beforer' do
     join_point = JoinPointClass.new(ClassAspected)
     join_points = Array.new
     join_points << join_point
-    @aspect = Aspecto.new(CutPointAnd.new(join_points))
+    @aspect_before = Aspecto.new(CutPointAnd.new(join_points))
     aspects = Array.new
-    aspects << @aspect
-    classes = Array.new
-    classes << ClassAspected
+    aspects << @aspect_before
+    @classes = Array.new
+    @classes << ClassAspected
     installer = AspectInstaller.new
-    installer.install_clases_with_aspects classes,aspects
-
-
+    installer.install_clases_with_aspects @classes,aspects
   end
 
-  it 'should do something 0' do
-    prueba = ClassAspected.new
+  it 'aspected method with 0 params executes' do
+    prueba = ClassAspected.new                                  #TODO: agregar algo para saber en q orden se ejecutaron los metodos
     res = prueba.method0
-    expect(@aspect.counter).to eq(0)
+    expect(@aspect_before.counter).to eq(0)
     expect(res).to eq(0)
   end
 
-  it 'should do something 1' do
+  it 'aspected method with 1 param executes' do
     prueba = ClassAspected.new
     res = prueba.method1 1
-    expect(@aspect.counter).to eq(1)
+    expect(@aspect_before.counter).to eq(1)
     expect(res).to eq(1)
   end
 
-  it 'should do something 2' do
+  it 'aspected method with 2 params executes' do
     prueba = ClassAspected.new
     res = prueba.method2 1,2
-    expect(@aspect.counter).to eq(2)
+    expect(@aspect_before.counter).to eq(2)
     expect(res).to eq(3)
   end
 
