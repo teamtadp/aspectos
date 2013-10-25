@@ -2,6 +2,9 @@ require_relative '../src/cut_point/abstract_join_point'
 require_relative '../src/otroInstaller/abstract_aspect'
 require_relative 'counter'
 require_relative '../src/join_point/join_point_class'
+require_relative '../src/join_point/join_point_method'
+require_relative '../src/cut_point/cut_point_or'
+require_relative '../src/cut_point/cut_point_not'
 require_relative '../src/otroInstaller/installer'
 
 require 'rspec'
@@ -19,13 +22,32 @@ describe 'Test de observer' do
       def ejecuta &bloque
         bloque.call
       end
+      def generate_error
+        raise "Soy un error!"
+      end
     end
+
+    class MultiMetodos
+      def metodo1
+        puts "Metodo1"
+      end
+
+      def metodo2
+        puts "Metodo2"
+      end
+
+      def otro_metodo
+        puts "Otro metodo"
+      end
+    end
+
   end
 
   instalador = Installer.new
 
   after do
     instalador.rollback_all
+    instalador.remove_all
   end
 
   it 'pasa si imprime antes y despues' do
@@ -162,7 +184,9 @@ describe 'Test de observer' do
 
     end
 
-    aspect = Aspecto.new(JoinPointClass.new(Prueba))
+    a = Prueba.new
+
+    aspect = Aspecto.new(CutPointOr.new([JoinPointMethod.new(a.method(:to_s)),JoinPointMethod.new(a.method(:hola))]))
 
     instalador.add_aspect aspect
     expect(instalador.aspects_which_apply(:hola, Prueba)).to eq(instalador.aspects)
@@ -214,5 +238,64 @@ describe 'Test de observer' do
     expect(aspect.counter.result).to eq(0)
   end
 
+  it 'pasa si cachea el error correctamente' do
 
+    class Aspecto < AbstractAspect
+      attr_accessor :counter
+
+      def startup
+        @counter = Counter.new
+      end
+
+      def after; end
+      def before; end
+
+      def on_error exeption
+        @counter.add
+        puts "Atrape el error"
+      end
+    end
+
+    aspect = Aspecto.new(JoinPointClass.new(Prueba))
+
+    instalador.add_aspect aspect
+    instalador.inject_method(Prueba, :generate_error)
+
+    prueba = Prueba.new
+    prueba.generate_error
+
+    expect(aspect.counter.result).to eq(1)
+  end
+
+  it 'pasa si atrapa el error correctamente' do
+
+    class Aspecto < AbstractAspect
+      attr_accessor :counter
+
+      def startup
+        @counter = Counter.new
+      end
+
+      def after; end
+      def before; end
+      def on_error; end
+
+      def instead_of(instance)
+        instance.multiply 3
+      end
+
+    end
+
+    aspect = Aspecto.new(JoinPointMethod.new(:add))
+    aspect.instead_of_defined = true
+
+
+    instalador.add_aspect aspect
+    instalador.inject_method(Counter, :add)
+
+    contador = Counter.new(1)
+    contador.add
+
+    expect(contador.result).to eq(3)
+  end
 end

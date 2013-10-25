@@ -1,6 +1,6 @@
 class Counter
-  def initialize
-    @counter = 0
+  def initialize number=0
+    @counter = number
   end
 
   def add
