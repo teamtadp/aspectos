@@ -13,6 +13,12 @@ describe 'Test de observer' do
       def hola
         puts 'Imprimo hola de la clase prueba'
       end
+      def imprimi str
+        puts str
+      end
+      def ejecuta &bloque
+        bloque.call
+      end
     end
   end
 
@@ -49,6 +55,70 @@ describe 'Test de observer' do
 
     prueba = Prueba.new
     prueba.hola
+
+    expect(aspect.counter.result).to eq(2)
+  end
+
+  it 'pasa si imprime antes y despues si el metodo tiene un argumento' do
+
+    class Aspecto < AbstractAspect
+      attr_accessor :counter
+
+      def startup
+        @counter = Counter.new
+      end
+
+      def before
+        @counter.add
+        puts "Pase antes"
+      end
+
+      def after
+        @counter.add
+        puts 'Pase despues!'
+      end
+    end
+
+    aspect = Aspecto.new(JoinPointClass.new(Prueba))
+
+    instalador.add_aspect aspect
+    instalador.inject_method(Prueba, :imprimi)
+
+    prueba = Prueba.new
+    prueba.imprimi 'Chau'
+
+    expect(aspect.counter.result).to eq(2)
+  end
+
+  it 'pasa si imprime antes y despues si el metodo tiene un argumento de tipo bloque' do
+
+    class Aspecto < AbstractAspect
+      attr_accessor :counter
+
+      def startup
+        @counter = Counter.new
+      end
+
+      def before
+        @counter.add
+        puts "Pase antes"
+      end
+
+      def after
+        @counter.add
+        puts 'Pase despues!'
+      end
+    end
+
+    aspect = Aspecto.new(JoinPointClass.new(Prueba))
+
+    instalador.add_aspect aspect
+    instalador.inject_method(Prueba, :ejecuta)
+
+    prueba = Prueba.new
+    prueba.ejecuta do
+      'Chau'
+    end
 
     expect(aspect.counter.result).to eq(2)
   end

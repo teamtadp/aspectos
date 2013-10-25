@@ -7,17 +7,17 @@ class Installer
   end
 
   def inject_method(a_class, a_method)
-    without = "#{a_method.to_s}_without_aspect".to_sym
+    without = new_symbol(a_method)
     with = a_method
     aspects = aspects_which_apply a_method, a_class
     if (aspects.length > 0)
       a_class.send(:alias_method, without, with)
-      a_class.send :define_method, with do |*args|
+      a_class.send :define_method, with do |*args, &block|
         aspects.each do |aspect|
           aspect.before
         end
 
-        self.send without, *args
+        self.send without, *args, &block
 
         aspects.each do |aspect|
           aspect.after
@@ -28,15 +28,26 @@ class Installer
     end
   end
 
-  def save_injection(a_class, original_method, aliased)
-    aspectos = aspects_which_apply(original_method, a_class)
-    @injections = @injections.merge([a_class,original_method, aliased] => aspectos)
+  def new_symbol(a_method)
+    "#{a_method.to_s}_without_aspect".to_sym
   end
 
-  def rollback a_class, a_method
-    without = "#{a_method.to_s}_without_aspect".to_sym
+  def save_injection(a_class, original_method, aliased)
+    aspectos = aspects_which_apply(original_method, a_class)
+    @injections = @injections.merge(generateKey(a_class, original_method, aliased) => aspectos)
+  end
+
+
+  def rollback(a_class, a_method)
+    without = new_symbol(a_method)
     with = a_method
     a_class.send(:alias_method, with, without)
+    a_class.send(:remove_method, without)
+    @injections.delete(generateKey(a_class, a_method, without))
+  end
+
+  def generateKey(a_class, a_method, aliased)
+    [a_class, a_method, aliased]
   end
 
   def rollback_all
