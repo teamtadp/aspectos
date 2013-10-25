@@ -26,7 +26,7 @@ describe 'Funciona se se instala el aspect beforer' do
       attr_accessor :counter
 
       def before_method(*params)
-        @counter = 1
+        @counter = params.count
       end
 
     end
@@ -48,7 +48,7 @@ describe 'Funciona se se instala el aspect beforer' do
   it 'should do something 0' do
     prueba = ClassAspected.new
     res = prueba.method0
-    expect(@aspect.counter).to eq(1)
+    expect(@aspect.counter).to eq(0)
     expect(res).to eq(0)
   end
 
@@ -62,7 +62,7 @@ describe 'Funciona se se instala el aspect beforer' do
   it 'should do something 2' do
     prueba = ClassAspected.new
     res = prueba.method2 1,2
-    expect(@aspect.counter).to eq(1)
+    expect(@aspect.counter).to eq(2)
     expect(res).to eq(3)
   end
 
