@@ -8,7 +8,7 @@ class AspectBefore < AbstractAspect
       method_without_aspect = a_method.to_s + '_without_aspect'
       parameters = a_method.parameters
       if (parameters.size > 0)
-        a_class.send(:define_method, method_with_aspect)  do |parameters|
+        a_class.send(:define_method, method_with_aspect)  do |*parameters|
           aspect.before_method        #TODO: ver como hacer para q el usuario pueda definir parametros (el metodo del before)(before_method(*params), para q le lleguen))
           self.send(method_without_aspect.to_sym,parameters)      #TODO hacer q esto pueda recibir parametros (el metodo original)
         end
