@@ -1,5 +1,5 @@
 require_relative 'abstract_aspect'
-class AspectBefore < AbstractAspect
+class AbstractAspectBefore < AbstractAspect
 
   #TODO: se pueden extraer cachos de código en la super clase porq algunas cosas se van a repetir. Template method.
     def apply_aspect_method(a_method,a_class)

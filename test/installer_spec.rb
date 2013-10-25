@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../src/installer/aspect_before'
+require_relative '../src/installer/abstract_aspect_before'
 require_relative '../src/installer/aspect_installer'
 require_relative '../src/join_point/join_point_class'
 require_relative '../src/cut_point/cut_point_and'
@@ -24,7 +24,7 @@ describe 'Funciona se se instala el aspect beforer' do
       end
     end
 
-    class Aspecto < AspectBefore
+    class Aspecto < AbstractAspectBefore
       attr_accessor :counter
 
       def before_method(*params)
