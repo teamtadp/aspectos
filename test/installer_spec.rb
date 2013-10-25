@@ -9,7 +9,7 @@ describe 'Funciona se se instala el aspect beforer' do
 
   before(:all) do
     class ClassApected
-      def method1
+      def method1 num
         puts 'Se ejecuto el metodo m'
       end
     end
@@ -38,7 +38,7 @@ describe 'Funciona se se instala el aspect beforer' do
 
   prueba = ClassApected.new
 
-  prueba.method1
+  prueba.method1 1
 
   expect(aspect.counter).to eq(1)
   end
