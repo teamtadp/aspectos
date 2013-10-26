@@ -14,7 +14,7 @@ class Installer
         with = a_method
         with_instead_of = with_instead_of?
         cacheable_aspect = aspect_cacheable(aspects)
-        key_result = [a_class, a_method, a_method.params]
+        key_result = [a_class, a_method, a_class.instance_method(a_method).parameters]
         a_class.send(:alias_method, without, with)
         a_class.send :define_method, with do |*args, &block|
           aspects.each do |aspect|

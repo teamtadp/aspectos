@@ -314,8 +314,10 @@ describe 'Test de observer' do
     calcu = Calculadora.new
     expect(calcu.tres).to eq(3)
 
-    calcu.send :define_method, :tres do
-      4
+    calcu.send :instance_eval do
+      def tres_without_aspect
+        4
+      end
     end
 
     expect(calcu.tres).to eq(3)

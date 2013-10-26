@@ -3,7 +3,9 @@ require_relative 'abstract_aspect'
 class CacheableAspect < AbstractAspect
 
   def initialize(point_cut)
-    super.initialize point_cut
+    @point_cut = point_cut
+    @instead_of_defined = false
+    startup
     @cache = Hash.new
   end
 
