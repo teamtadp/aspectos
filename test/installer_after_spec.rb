@@ -23,7 +23,7 @@ describe 'Funciona si se instala el aspect after' do
     class Aspecto < AbstractAspectAfter
       attr_accessor :counter
 
-      def after_method(*params)
+      def after_method(a_class,a_method,*params)
         @counter = params.count
         puts 'after'
       end

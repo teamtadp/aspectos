@@ -23,7 +23,7 @@ describe 'Funciona si a la clase se le aplica el aspecto instead of' do
     class Aspecto < AbstractAspectInsteadOf
       attr_accessor :counter
 
-      def instead_of_method(*params)
+      def instead_of_method(a_class,a_method,*params)
         puts 'instead of'
       end
 

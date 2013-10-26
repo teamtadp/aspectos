@@ -10,7 +10,7 @@ describe 'Funciona se se instala el aspect beforer' do
   before(:all) do
     class ClassAspected
       def method0
-      caller(0)
+       0
       end
 
       def method1(num)
@@ -25,7 +25,7 @@ describe 'Funciona se se instala el aspect beforer' do
     class Aspecto < AbstractAspectBefore
       attr_accessor :counter
 
-      def before_method(*params)
+      def before_method(a_class,a_method,an_instance,*params)
         @counter = params.count
       end
 

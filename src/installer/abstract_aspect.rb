@@ -19,12 +19,12 @@ class AbstractAspect
     m_without_aspect = a_method.to_s + '_without_aspect_' + self.class.name
     parameters = a_method.parameters
 
-    apply_concrete_aspect_method(a_class, aspect, m_with_aspect, m_without_aspect)
+    apply_concrete_aspect_method(aspect, m_with_aspect, m_without_aspect,a_class,a_method)
 
     a_class.send(:alias_method, m_without_aspect.to_sym, a_method.name)
     a_class.send(:alias_method, a_method.name, m_with_aspect.to_sym)
   end
 
-  def apply_concrete_aspect_method(a_class,aspect,m_with_aspect,m_without_aspect); raise 'apply_concrete_method should be implemented' end
+  def apply_concrete_aspect_method(aspect,m_with_aspect,m_without_aspect,a_class,a_method); raise 'apply_concrete_method should be implemented' end
 
 end

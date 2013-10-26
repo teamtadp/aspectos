@@ -24,7 +24,7 @@ describe 'Funciona si se installa el aspecto on error' do
     class Aspecto < AbstractAspectOnError
       attr_accessor :counter
 
-      def on_error_method(*params)
+      def on_error_method(a_class,a_method,*params)
         puts 'error'
       end
 
