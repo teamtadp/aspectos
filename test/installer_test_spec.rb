@@ -6,6 +6,7 @@ require_relative '../src/join_point/join_point_method'
 require_relative '../src/cut_point/cut_point_or'
 require_relative '../src/cut_point/cut_point_not'
 require_relative '../src/otroInstaller/installer'
+require_relative '../src/otroInstaller/cacheable_aspect'
 
 require 'rspec'
 
@@ -27,17 +28,9 @@ describe 'Test de observer' do
       end
     end
 
-    class MultiMetodos
-      def metodo1
-        puts "Metodo1"
-      end
-
-      def metodo2
-        puts "Metodo2"
-      end
-
-      def otro_metodo
-        puts "Otro metodo"
+    class Calculadora
+      def tres
+        return 3
       end
     end
 
@@ -297,5 +290,35 @@ describe 'Test de observer' do
     contador.add
 
     expect(contador.result).to eq(3)
+  end
+
+  it 'pasa si cachea bien un metodo' do
+    class AspectoCacheado < CacheableAspect
+      attr_accessor :counter
+
+      def startup
+        @counter = Counter.new
+      end
+
+      def after; puts 'hola'; end
+      def before; end
+      def on_error; end
+
+    end
+
+    aspect = AspectoCacheado.new(JoinPointClass.new(Calculadora))
+
+    instalador.add_aspect aspect
+    instalador.inject_method(Calculadora, :tres)
+
+    calcu = Calculadora.new
+    expect(calcu.tres).to eq(3)
+
+    calcu.send :define_method, :tres do
+      4
+    end
+
+    expect(calcu.tres).to eq(3)
+
   end
 end
