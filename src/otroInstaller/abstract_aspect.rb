@@ -16,6 +16,14 @@ class AbstractAspect
     @instead_of_defined
   end
 
+  def cacheable
+    false
+  end
+
+  def has_result
+    false
+  end
+
   def startup; end
   def before; end
   def after; end

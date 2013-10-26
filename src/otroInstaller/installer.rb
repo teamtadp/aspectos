@@ -13,27 +13,41 @@ class Installer
         without = new_symbol(a_method)
         with = a_method
         with_instead_of = with_instead_of?
+        cacheable_aspect = aspect_cacheable(aspects)
+        key_result = [a_class, a_method, a_method.params]
         a_class.send(:alias_method, without, with)
         a_class.send :define_method, with do |*args, &block|
           aspects.each do |aspect|
             aspect.before
           end
 
-          if (with_instead_of) then
-            aspects.each do |aspect|
-              return_thing = aspect.instead_of(self)
-            end
-          else
-            begin
-
-              return_thing = self.send without, *args, &block
-
-            rescue Exception => e
+          if(cacheable_aspect == nil or ! cacheable_aspect.has_result(key_result)) then
+            if (with_instead_of) then
               aspects.each do |aspect|
-                aspect.on_error e
+                return_thing = aspect.instead_of(self)
+              end
+            else
+              begin
+
+                return_thing = self.send without, *args, &block
+
+              rescue Exception => e
+                aspects.each do |aspect|
+                  aspect.on_error e
+                end
               end
             end
+
+            if (cacheable_aspect != nil) then
+              cacheable_aspect.set_result(key_result, return_thing)
+            end
+
+          else
+            if (cacheable_aspect != nil) then
+              return_thing = cacheable_aspect.get_result(key_result)
+            end
           end
+
 
           aspects.each do |aspect|
             aspect.after
@@ -45,6 +59,11 @@ class Installer
         save_injection(a_class, a_method, without)
       end
     end
+  end
+
+  def aspect_cacheable(aspects)
+    list = aspects.select {|aspect| aspect.cacheable }
+    list[0]
   end
 
   def new_symbol(a_method)
@@ -102,6 +121,5 @@ class Installer
   def remove_all
     @aspects.clear
   end
-
 
 end
