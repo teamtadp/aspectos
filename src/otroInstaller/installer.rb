@@ -1,69 +1,60 @@
 class Installer
-  attr_reader :aspects, :injections
+  attr_reader :injections, :before_aspects, :after_aspects, :error_aspects, :instead_aspects
 
   def initialize
-    @aspects = []
+    @before_aspects = []
+    @after_aspects = []
+    @error_aspects = []
+    @instead_aspects = []
     @injections = Hash.new
   end
 
   def inject_method(a_class, a_method)
     if (!already_injected?(a_class, a_method))  then
-      aspects = aspects_which_apply a_method, a_class
-      if (aspects.length > 0) then
-        without = new_symbol(a_method)
-        with = a_method
-        with_instead_of = with_instead_of?
-        cacheable_aspect = aspect_cacheable(aspects)
-        key_result = [a_class, a_method, a_class.instance_method(a_method).parameters]
-        a_class.send(:alias_method, without, with)
-        a_class.send :define_method, with do |*args, &block|
-          aspects.each do |aspect|
-            aspect.before
-          end
+      after_blocks = map_blocks @after_aspects
+      before_blocks = map_blocks @before_aspects
+      error_blocks = map_blocks @error_aspects
+      instead_blocks = map_blocks @instead_aspects
 
-          if(cacheable_aspect == nil or ! cacheable_aspect.has_result(key_result)) then
-            if (with_instead_of) then
-              aspects.each do |aspect|
-                return_thing = aspect.instead_of(self)
-              end
-            else
-              begin
+      without = new_symbol(a_method)
+      with = a_method
+      with_instead_of = instead_blocks.size != 0
 
-                return_thing = self.send without, *args, &block
+      a_class.send(:alias_method, without, with)
+      a_class.send :define_method, with do |*args, &block|
+        return_thing = self
 
-              rescue Exception => e
-                aspects.each do |aspect|
-                  aspect.on_error e
-                end
-              end
-            end
-
-            if (cacheable_aspect != nil) then
-              cacheable_aspect.set_result(key_result, return_thing)
-            end
-
-          else
-            if (cacheable_aspect != nil) then
-              return_thing = cacheable_aspect.get_result(key_result)
-            end
-          end
-
-
-          aspects.each do |aspect|
-            aspect.after
-          end
-
-          return return_thing
+        before_blocks.each do |aspect|
+          aspect.call
         end
 
-        save_injection(a_class, a_method, without)
-      end
-    end
-  end
 
-  def aspect_cacheable(aspects)
-    list = aspects.select {|aspect| aspect.cacheable }
-    list[0]
+        if (with_instead_of) then
+          instead_blocks.each do |aspect|
+            return_thing = aspect.call self
+          end
+        else
+          begin
+
+            return_thing = self.send without, *args, &block
+
+          rescue Exception => e
+            error_blocks.each do |aspect|
+              aspect.call e
+            end
+          end
+        end
+
+        after_blocks.each do |aspect|
+          aspect.call
+        end
+
+        return return_thing
+      end
+
+      save_injection(a_class, a_method, without)
+
+    end
   end
 
   def new_symbol(a_method)
@@ -77,8 +68,7 @@ class Installer
   end
 
   def save_injection(a_class, original_method, aliased)
-    aspectos = aspects_which_apply(original_method, a_class)
-    @injections = @injections.merge(generate_key(a_class, original_method, aliased) => aspectos)
+    @injections = @injections.merge(generate_key(a_class, original_method) => [aliased, @before_aspects, @after_aspects, @instead_aspects, @error_aspects])
   end
 
 
@@ -87,11 +77,11 @@ class Installer
     with = a_method
     a_class.send(:alias_method, with, without)
     a_class.send(:remove_method, without)
-    @injections.delete(generate_key(a_class, a_method, without))
+    @injections.delete(generate_key(a_class, a_method))
   end
 
-  def generate_key(a_class, a_method, aliased)
-    [a_class, a_method, aliased]
+  def generate_key(a_class, a_method)
+    [a_class, a_method]
   end
 
   def rollback_all
@@ -103,23 +93,59 @@ class Installer
   end
 
   def already_injected?(a_class, a_method)
-    @injections.key?(generate_key(a_class, a_method, new_symbol(a_method)))
+    @injections.key?(generate_key(a_class, a_method))
   end
 
-  def aspects_which_apply a_method, a_class
-    return @aspects.select {|aspect| aspect.check_point_cut a_method, a_class}
+  def install *classes
+    un_metodo_aspecteado = false
+    classes.each do |a_class|
+      a_class.instance_methods(false).each do |a_method|
+        if check_all_aspects(a_method, a_class) then
+          inject_method(a_class, a_method)
+          un_metodo_aspecteado = true
+        end
+      end
+    end
+
+    raise 'Alguno de los aspectos no aplica' unless un_metodo_aspecteado
+
   end
 
-  def add_aspect aspect
-    @aspects << aspect
+  #--------------- METODOS PARA COLECCIONES DE BLOQUES ----------------
+  #----- Se puede pensar en tirar las 4 colecciones a otra clase ----
+  def install_before(join_point, &block)
+    @before_aspects << [join_point, block]
+  end
+  def install_after(join_point, &block)
+    @before_aspects << [join_point, block]
+  end
+  def install_instead_of(join_point, &block)
+    @before_aspects << [join_point, block]
+  end
+  def install_on_error(join_point, &block)
+    @before_aspects << [join_point, block]
   end
 
-  def remove_aspect(aspect)
-    @aspects.delete(aspect)
+  def check_aspect(a_method, a_class, tupla)
+    tupla[0].applies a_method, a_class
   end
 
-  def remove_all
-    @aspects.clear
+  def check_aspect_in_collection (a_method, a_class, coleccion)
+    coleccion.all? do |tupla|
+      check_aspect(a_method, a_class, tupla)
+    end
   end
 
+  def check_all_aspects(a_method, a_class)
+    check_aspect_in_collection(a_method, a_class,@before_aspects) or
+        check_aspect_in_collection(a_method, a_class,@after_aspects) or
+        check_aspect_in_collection(a_method, a_class,@error_aspects) or
+        check_aspect_in_collection(a_method, a_class,@instead_aspects)
+  end
+
+  def map_blocks(colection)
+    colection.map do |tupla|
+      tupla[1]
+    end
+  end
 end
