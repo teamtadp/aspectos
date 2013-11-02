@@ -1,20 +1,19 @@
+require_relative 'aspect_collector'
+
 class Installer
-  attr_reader :injections, :before_aspects, :after_aspects, :error_aspects, :instead_aspects
+  attr_reader :injections, :aspect_collector
 
   def initialize
-    @before_aspects = []
-    @after_aspects = []
-    @error_aspects = []
-    @instead_aspects = []
+    @aspect_collector = AspectCollector.new
     @injections = Hash.new
   end
 
   def inject_method(a_class, a_method)
-    if (!already_injected?(a_class, a_method))  then
-      after_blocks = map_blocks @after_aspects
-      before_blocks = map_blocks @before_aspects
-      error_blocks = map_blocks @error_aspects
-      instead_blocks = map_blocks @instead_aspects
+    if (!already_injected?(a_class, a_method) and @aspect_collector.any_aspect?(a_method, a_class))  then
+      after_blocks = @aspect_collector.after_blocks(a_class, a_method)
+      before_blocks = @aspect_collector.before_blocks(a_class, a_method)
+      error_blocks = @aspect_collector.on_error_blocks(a_class, a_method)
+      instead_blocks = @aspect_collector.instead_of_blocks(a_class, a_method)
 
       without = new_symbol(a_method)
       with = a_method
@@ -61,14 +60,8 @@ class Installer
     "#{a_method.to_s}_without_aspect".to_sym
   end
 
-  def with_instead_of?
-    @aspects.any? do |aspect|
-      aspect.instead_of_defined?
-    end
-  end
-
   def save_injection(a_class, original_method, aliased)
-    @injections = @injections.merge(generate_key(a_class, original_method) => [aliased, @before_aspects, @after_aspects, @instead_aspects, @error_aspects])
+    @injections = @injections.merge(generate_key(a_class, original_method) => [aliased, @aspect_collector])
   end
 
 
@@ -78,6 +71,10 @@ class Installer
     a_class.send(:alias_method, with, without)
     a_class.send(:remove_method, without)
     @injections.delete(generate_key(a_class, a_method))
+  end
+
+  def clean
+    @aspect_collector = AspectCollector.new
   end
 
   def generate_key(a_class, a_method)
@@ -96,56 +93,43 @@ class Installer
     @injections.key?(generate_key(a_class, a_method))
   end
 
-  def install *classes
-    un_metodo_aspecteado = false
+  def install(*classes)
+    do_to_all_methods(*classes) do |a_class, a_method|
+      @aspect_collector.check_all_aspects(a_method, a_class)
+    end
+
+    raise "Alguno de los aspectos no aplica." unless @aspect_collector.all_aspects?
+
+    do_to_all_methods(*classes) do |a_class, a_method|
+        inject_method(a_class, a_method)
+    end
+  end
+
+
+  def do_to_all_methods(*classes, &block)
     classes.each do |a_class|
       a_class.instance_methods(false).each do |a_method|
-        if check_all_aspects(a_method, a_class) then
-          inject_method(a_class, a_method)
-          un_metodo_aspecteado = true
-        end
+        block.call(a_class, a_method)
       end
     end
-
-    raise 'Alguno de los aspectos no aplica' unless un_metodo_aspecteado
-
   end
 
-  #--------------- METODOS PARA COLECCIONES DE BLOQUES ----------------
-  #----- Se puede pensar en tirar las 4 colecciones a otra clase ----
+
   def install_before(join_point, &block)
-    @before_aspects << [join_point, block]
+    @aspect_collector.add_before(join_point, &block)
   end
+
   def install_after(join_point, &block)
-    @before_aspects << [join_point, block]
+    @aspect_collector.add_after(join_point, &block)
   end
+
   def install_instead_of(join_point, &block)
-    @before_aspects << [join_point, block]
+    @aspect_collector.add_instead_of(join_point, &block)
   end
+
   def install_on_error(join_point, &block)
-    @before_aspects << [join_point, block]
+    @aspect_collector.add_on_error(join_point, &block)
   end
 
-  def check_aspect(a_method, a_class, tupla)
-    tupla[0].applies a_method, a_class
-  end
 
-  def check_aspect_in_collection (a_method, a_class, coleccion)
-    coleccion.all? do |tupla|
-      check_aspect(a_method, a_class, tupla)
-    end
-  end
-
-  def check_all_aspects(a_method, a_class)
-    check_aspect_in_collection(a_method, a_class,@before_aspects) or
-        check_aspect_in_collection(a_method, a_class,@after_aspects) or
-        check_aspect_in_collection(a_method, a_class,@error_aspects) or
-        check_aspect_in_collection(a_method, a_class,@instead_aspects)
-  end
-
-  def map_blocks(colection)
-    colection.map do |tupla|
-      tupla[1]
-    end
-  end
 end

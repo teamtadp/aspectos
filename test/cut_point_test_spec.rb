@@ -30,54 +30,54 @@ describe 'Test de cut point' do
 
   #---------------------- AND -----------------------
   it 'pasa si todos los join point son verdaderos AND' do
-    cp_and = CutPointAnd.new([@_jp_true_1,@_jp_true_2, @_jp_true_3])
+    cp_and = CutPointAnd.new(@_jp_true_1,@_jp_true_2, @_jp_true_3)
     expect(cp_and.applies(nil,nil)).to eq(true)
   end
 
   it 'pasa si alguno de los join point son falsos AND' do
-    cp_and = CutPointAnd.new([@_jp_true_1,@_jp_true_2, @_jp_false_3])
+    cp_and = CutPointAnd.new(@_jp_true_1,@_jp_true_2, @_jp_false_3)
     expect(cp_and.applies(nil,nil)).to eq(false)
   end
 
   it 'pasa si todos los join point son falsos AND' do
-    cp_and = CutPointAnd.new([@_jp_false_1,@_jp_false_2, @_jp_false_3])
+    cp_and = CutPointAnd.new(@_jp_false_1,@_jp_false_2, @_jp_false_3)
     expect(cp_and.applies(nil,nil)).to eq(false)
   end
 
   it 'pasa si el unico join point es verdadero AND' do
-    cp_and = CutPointAnd.new([@_jp_true_3])
+    cp_and = CutPointAnd.new(@_jp_true_3)
     expect(cp_and.applies(nil,nil)).to eq(true)
   end
 
   it 'pasa si el unico join point es falsos AND' do
-    cp_and = CutPointAnd.new([@_jp_false_3])
+    cp_and = CutPointAnd.new(@_jp_false_3)
     expect(cp_and.applies(nil,nil)).to eq(false)
   end
   #--------------------------------------------------
 
   #---------------------- OR -----------------------
   it 'pasa si todos los join point son verdaderos OR' do
-    cp_or = CutPointOr.new([@_jp_true_1,@_jp_true_2, @_jp_true_3])
+    cp_or = CutPointOr.new(@_jp_true_1,@_jp_true_2, @_jp_true_3)
     expect(cp_or.applies(nil,nil)).to eq(true)
   end
 
   it 'pasa si alguno de los join point son verdadero OR' do
-    cp_or = CutPointOr.new([@_jp_true_1,@_jp_false_2, @_jp_false_3])
+    cp_or = CutPointOr.new(@_jp_true_1,@_jp_false_2, @_jp_false_3)
     expect(cp_or.applies(nil,nil)).to eq(true)
   end
 
   it 'pasa si todos los join point son falsos OR' do
-    cp_or = CutPointOr.new([@_jp_false_1,@_jp_false_2, @_jp_false_3])
+    cp_or = CutPointOr.new(@_jp_false_1,@_jp_false_2, @_jp_false_3)
     expect(cp_or.applies(nil,nil)).to eq(false)
   end
 
   it 'pasa si el unico join point es verdadero OR' do
-    cp_or = CutPointOr.new([@_jp_true_3])
+    cp_or = CutPointOr.new(@_jp_true_3)
     expect(cp_or.applies(nil,nil)).to eq(true)
   end
 
   it 'pasa si el unico join point es falsos OR' do
-    cp_or = CutPointOr.new([@_jp_false_3])
+    cp_or = CutPointOr.new(@_jp_false_3)
     expect(cp_or.applies(nil,nil)).to eq(false)
   end
   #--------------------------------------------------
