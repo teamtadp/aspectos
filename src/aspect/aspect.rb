@@ -1,4 +1,5 @@
 require_relative 'aspect_collector'
+require_relative 'aspect_dsl'
 
 class Aspect
   attr_reader :injections, :aspect_collector
@@ -11,6 +12,7 @@ class Aspect
   def self.define(&block)
     aspecto = Aspect.new
     AspectDSL.new(aspecto).define(&block)
+    aspecto
   end
 
   def inject_method(a_class, a_method)
