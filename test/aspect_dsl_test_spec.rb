@@ -53,14 +53,16 @@ describe 'Test de Installer' do
     aspect = Aspect.define {
       classes Prueba
 
-      after JoinPointClass.new(Prueba) do
+      after for_class Prueba do
         counter.add
       end
 
-      before JoinPointClass.new(Prueba) do
+      before for_class Prueba do
         counter.add
       end
     }
+
+    aspect.install(Prueba)
 
     prueba = Prueba.new
     prueba.hola
@@ -68,46 +70,22 @@ describe 'Test de Installer' do
     expect(counter.result).to eq(2)
   end
 
-
-  it 'pasa si imprime antes y despues si no defino una clase en particular' do
-
-    counter = Counter.new
-
-    aspect = Aspect.define {
-
-      after JoinPointClass.new(Prueba) do
-        counter.add
-      end
-
-      before JoinPointClass.new(Prueba) do
-        counter.add
-      end
-
-    }
-
-    prueba = Prueba.new
-    prueba.imprimi 'Chau'
-
-    expect(counter.result).to eq(2)
-  end
-
-
   it 'pasa si imprime antes y despues si el metodo tiene un argumento' do
 
     counter = Counter.new
 
     aspect = Aspect.define {
 
-      after JoinPointClass.new(Prueba) do
+      after for_class Prueba do
         counter.add
       end
 
-      before JoinPointClass.new(Prueba) do
+      before for_class Prueba do
         counter.add
       end
-
-      classes Prueba
     }
+
+    aspect.install(Prueba)
 
     prueba = Prueba.new
     prueba.imprimi 'Chau'
@@ -121,16 +99,17 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      after JoinPointClass.new(Prueba) do
+      after for_class Prueba do
         counter.add
       end
 
-      before JoinPointClass.new(Prueba) do
+      before for_class Prueba do
         counter.add
       end
 
-      classes Prueba
     }
+
+    aspect.install(Prueba)
 
 
     prueba = Prueba.new
@@ -147,16 +126,16 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      after JoinPointClass.new(Prueba) do
+      after for_class Prueba do
         string+= "after"
       end
 
-      before JoinPointClass.new(Prueba) do
+      before for_class Prueba do
         string+= "before-"
       end
-
-      classes Prueba
     }
+
+    aspect.install(Prueba)
 
     prueba = Prueba.new
     prueba.send :hola
@@ -168,24 +147,22 @@ describe 'Test de Installer' do
     counter = Counter.new(1)
 
     aspect = Aspect.define {
-
-      after JoinPointClass.new(Prueba) do
+      after for_class Prueba do
         counter.add
       end
 
       #Se esta llamando dos veces y no se porque... Despues me fijo
-      before JoinPointClass.new(Calculadora) do
+      before for_class Calculadora do
         counter.multiply(10)
       end
-
-      classes Prueba, Calculadora
     }
 
-    aspect.install(Prueba,Calculadora)
+    aspect.install(Prueba, Calculadora)
+
 
     Calculadora.new.tres
 
-    expect(counter.result).to eq(1)
+    expect(counter.result).to eq(10)
   end
 
   it 'pasa si captura el error correctamente' do
@@ -194,12 +171,12 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      on_error JoinPointClass.new(Prueba) do |e|
+      on_error for_class Prueba do |e|
         string = "Agarre el error: '#{e.to_s}'"
       end
-
-      classes Prueba
     }
+
+    aspect.install(Prueba)
 
     prueba = Prueba.new
     prueba.generate_error
@@ -211,12 +188,12 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      instead_of JoinPointMethod.new(:add) do |_self|
+      instead_of for_method :add do |_self|
         _self.multiply 4
       end
-
-      classes Counter
     }
+
+    aspect.install(Counter)
 
     contador = Counter.new(2)
     contador.add
@@ -228,12 +205,12 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      instead_of JoinPointMethod.new(:trabaja) do |_self|
+      instead_of for_method :trabaja do |_self|
         'Estoy de paro'
       end
-
-      classes Prueba
     }
+
+    aspect.install(Prueba)
 
     prueba = Prueba.new
 
