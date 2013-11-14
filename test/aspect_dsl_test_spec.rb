@@ -217,5 +217,23 @@ describe 'Test de Installer' do
     expect(prueba.trabaja).to eq('Estoy de paro')
   end
 
+  it 'pasa si se instala lo correspondiente' do
+    string = ''
+    class AClass
+    end
+    aspect = Aspect.define {
+
+    before ((for_class AClass).or for_method :hola) do
+      string = 'aspected'
+    end
+
+    }
+
+    aspect.install(Prueba)
+    prueba = Prueba.new
+    prueba.hola
+    expect(string).to eq('aspected')
+  end
+
 
 end

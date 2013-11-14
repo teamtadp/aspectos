@@ -22,12 +22,13 @@ class Aspect
       error_blocks = @aspect_collector.on_error_blocks(a_class, a_method)
       instead_blocks = @aspect_collector.instead_of_blocks(a_class, a_method)
 
-      without = new_symbol(a_method)
-      with = a_method
+      without_aspect_method = new_symbol(a_method)
+      with_aspect_method = "#{a_method.to_s}_with_aspect".to_sym
+      original_method = a_method
       with_instead_of = instead_blocks.size != 0
 
-      a_class.send(:alias_method, without, with)
-      a_class.send :define_method, with do |*args, &block|
+
+      a_class.send :define_method, with_aspect_method do |*args, &block|
         return_thing = self
 
         before_blocks.each do |aspect|
@@ -37,12 +38,12 @@ class Aspect
 
         if (with_instead_of) then
           instead_blocks.each do |aspect|
-            return_thing = aspect.call self
+            return_thing = aspect.call(self)
           end
         else
           begin
 
-            return_thing = self.send without, *args, &block
+            return_thing = self.send without_aspect_method, *args, &block
 
           rescue Exception => e
             error_blocks.each do |aspect|
@@ -57,8 +58,10 @@ class Aspect
 
         return return_thing
       end
+      a_class.send(:alias_method, without_aspect_method, original_method)
+      a_class.send(:alias_method, original_method, with_aspect_method)
 
-      save_injection(a_class, a_method, without)
+      save_injection(a_class, a_method, without_aspect_method)
 
     end
   end

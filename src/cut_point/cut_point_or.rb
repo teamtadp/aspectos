@@ -12,4 +12,8 @@ class CutPointOr < AbstractJoinPoint
     end
   end
 
+  def or(a_jp)
+    @cp_join_points.push(a_jp)
+  end
+
 end
