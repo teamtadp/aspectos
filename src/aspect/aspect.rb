@@ -31,14 +31,15 @@ class Aspect
       a_class.send :define_method, with_aspect_method do |*args, &block|
         return_thing = self
 
+
         before_blocks.each do |aspect|
-          aspect.call
+          self.instance_exec(*args,&aspect)
         end
 
 
         if (with_instead_of) then
           instead_blocks.each do |aspect|
-            return_thing = aspect.call(self)
+            return_thing = self.instance_exec(self,*args,&aspect)
           end
         else
           begin
@@ -47,13 +48,13 @@ class Aspect
 
           rescue Exception => e
             error_blocks.each do |aspect|
-              aspect.call e
+              self.instance_exec(e,*args,&aspect)
             end
           end
         end
 
         after_blocks.each do |aspect|
-          aspect.call
+          self.instance_exec(*args,&aspect)
         end
 
         return return_thing

@@ -76,11 +76,11 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      after for_class Prueba do
+      after for_method :imprimi do |a_string|
         counter.add
       end
 
-      before for_class Prueba do
+      before for_method :imprimi do |a_string|
         counter.add
       end
     }
@@ -218,21 +218,27 @@ describe 'Test de Installer' do
   end
 
   it 'pasa si se instala lo correspondiente' do
-    string = ''
     class AClass
+      attr_accessor :prop
+      def initialize
+        @prop = ''
+      end
+      def meth
+        @prop += '-meth'
+      end
     end
     aspect = Aspect.define {
 
-    before ((for_class AClass).or for_method :hola) do
-      string = 'aspected'
+    before ((for_class AClass and for_method :meth).or for_method :hola) do
+      @prop += 'before'
     end
 
     }
 
-    aspect.install(Prueba)
-    prueba = Prueba.new
-    prueba.hola
-    expect(string).to eq('aspected')
+    aspect.install(AClass)
+    prueba = AClass.new
+    prueba.meth
+    expect(prueba.prop).to eq('before-meth')
   end
 
 
