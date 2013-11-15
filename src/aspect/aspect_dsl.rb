@@ -84,4 +84,8 @@ class AspectDSL
   def for_superclass(a_superclass)
     JoinPointSuperclass.new(a_superclass)
   end
+
+  def not(a_jp)
+    CutPointNot.new(a_jp)
+  end
 end

@@ -76,11 +76,11 @@ describe 'Test de Installer' do
 
     aspect = Aspect.define {
 
-      after for_method :imprimi do |a_string|
+      after for_method :imprimi do |*args|
         counter.add
       end
 
-      before for_method :imprimi do |a_string|
+      before for_method :imprimi do |*args|
         counter.add
       end
     }
